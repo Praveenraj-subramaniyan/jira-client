@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "./CSS/Header.css";
-import logo from "../images/logo.png";
+import logo from "../images/Jira-Logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import Avatar from "./Avatar";
 import { useDispatch, useSelector } from "react-redux";
@@ -37,24 +37,29 @@ function Header() {
             className="nav-item nav-btn  navbar-brand ms-5 headerLogo"
           >
             <li className="nav-item">
-              <img src={logo} alt="logo" />
+              <img src={logo} style={{width:"120px", height:"45px"}} alt="logo" />
             </li>
           </Link>
           <li className="nav-item headernavLink AboutHeader">
             <a className="nav-link me-3" href="#">
-              About
+            summary
+            </a>
+          </li>
+          <li className="nav-item headernavLink ProductsHeader">
+            <a className="nav-link header-broad pb-0 me-3" href="#">
+              Broad
             </a>
           </li>
           <li className="nav-item headernavLink ProductsHeader">
             <a className="nav-link me-3" href="#">
-              Products
+              List
             </a>
           </li>
           <li className="nav-item searchBarHeader">
             <input
               className="form-control me-2"
               type="text"
-              placeholder="Search"
+              placeholder="Search board"
             />
           </li>
         </ul>
