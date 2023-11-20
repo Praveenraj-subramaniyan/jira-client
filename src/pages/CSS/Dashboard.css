@@ -1,0 +1,35 @@
+.mainrightbarHome {
+  width: 85% !important;
+  padding-left: 0% !important;
+  border-left: 4px solid gainsboro;
+  background-color: hsl(210, 8%, 95%);
+}
+.leftsidebarHome {
+  padding: 0%;
+  width: 14%;
+  background-color: hsl(210, 8%, 95%);
+
+}
+@media (max-width: 600px) {
+  .leftsideNavBar {
+    width: 30%;
+  }
+  .leftsidebarHome {
+    width: 0% !important;
+  }
+  .mainrightbarHome {
+    margin-left: 10px;
+  }
+}
+@media (min-width: 600px) and (max-width: 830px) {
+  .mainrightbarHome {
+    margin-right: 0% !important;
+    padding-right: 0% !important;
+    width: 81% !important;
+  }
+  .leftsidebarHome {
+    padding: 0%;
+    width: 19%;
+    background-color: white;
+  }
+}
