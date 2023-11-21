@@ -1,8 +1,8 @@
-const questionsReducer = (state = { data: null }, action) => {
+const issueReducer = (state = { data: null }, action) => {
   switch (action.type) {
     case "CreateIssue":
       return { ...state };
-    case "GetAllQuestions":
+    case "GetAllTask":
       return { ...state, data: action.data };
     case "PostQuestion":
       return { ...state };
@@ -10,4 +10,4 @@ const questionsReducer = (state = { data: null }, action) => {
       return state;
   }
 };
-export default questionsReducer;
+export default issueReducer;

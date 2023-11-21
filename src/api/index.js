@@ -25,6 +25,15 @@ export const SignUPAPI = async (loginData) => {
   }
 };
 
+export const GetTaskListAPI = async () => {
+  try {
+    const response = await API.get("/issues");
+    return response.data;
+  } catch (error) {
+    return "Server Busy";
+  }
+};
+
 export const createIssueAPI = async (task) => {
   try {
     const response = await API.post("/issues/create", task, {

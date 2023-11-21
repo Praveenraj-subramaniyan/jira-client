@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./CSS/Dashboard.css";
 import LeftSideBar from "../components/LeftSideBar";
 import HomeMainBar from "../components/HomeMainBar";
 import Header from "../components/Header";
+import { getAllCard } from "../actions/IssueActions";
+import { useDispatch } from "react-redux";
 
 function Dashboard() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAllCard());
+  }, [dispatch]);
+  
   return (
     <div className="containerHome row">
       <Header/>

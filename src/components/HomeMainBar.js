@@ -7,42 +7,20 @@ import TaskCard from "./TaskCard";
 import { useSelector } from "react-redux";
 
 function HomeMainBar() {
-  // const taskList = useSelector((state) => state.questionsReducer);
-  const [taskList,settaskList]=useState([
-    {
-      id:1,
-      status:"TO DO",
-      sumarry:"ddsgdg dg dg dg d g dsg g sd gds g dg ds",
-      date: new Date(),
-    },
-    {
-      id:2,
-      status:"IN PROGRESS",
-      sumarry:"ddsgdg dg dg dg d g dsg g sd gds g dg ds",
-      date: new Date(),
-    },
-    {
-      id:3,
-      status:"DONE",
-      sumarry:"ddsgdg dg dg dg d g dsg g sd gds g dg ds",
-      date: new Date(),
-    },
-  ])
-  // const location = useLocation();
-  // if (!questionsList) {
-  //   return <div className="spinner-border  isLoading"></div>;
-  // }
+  const taskList = useSelector((state) => state.issueReducer.data);
+  if (!taskList) {
+    return <div className="spinner-border  isLoading"></div>;
+  }
 
   const handleDrop = (e, status) => {
     e.preventDefault();
     const taskId = e.dataTransfer.getData('text/plain');
-    // Perform actions based on the dragged task ID and the target status
     console.log(`Task ${taskId} dropped to ${status}`);
-    settaskList((prevTaskList) =>
-    prevTaskList.map((task) =>
-      task.id.toString() === taskId ? { ...task, status: status } : task
-    )
-  );
+  //   settaskList((prevTaskList) =>
+  //   prevTaskList.map((task) =>
+  //     task.id.toString() === taskId ? { ...task, status: status } : task
+  //   )
+  // );
 
     // You can update the state or perform other actions here
 };
@@ -75,7 +53,7 @@ function HomeMainBar() {
          {taskList
         .filter((task) => task.status === data)
         .map((filteredTask) => (
-          <TaskCard key={filteredTask.id} date={filteredTask.date} id={filteredTask.id} status={filteredTask.status} sumarry={filteredTask.sumarry} settaskList={settaskList}/>
+          <TaskCard key={filteredTask._id} date={filteredTask.date} id={filteredTask._id} status={filteredTask.status} sumarry={filteredTask.sumarry} />
       ))}
         
           </div>
