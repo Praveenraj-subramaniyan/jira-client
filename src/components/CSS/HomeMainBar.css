@@ -1,11 +1,20 @@
 .HomeMainBarDiv {
-  width: 71% !important;
+  width: 100% !important;
   margin-right: 0% !important;
 }
 .isLoading {
   color: #fc8019;
   margin-left: 35%;
   margin-top: 18%;
+}
+.staus-div{
+  min-height: 75vh;
+  margin-bottom: 10vh;
+  background-color: whitesmoke;
+  overflow-y: hidden;
+}
+.satus-menu{
+  float: right;
 }
 @media (max-width: 600px) {
   .HomeMainBarDiv {

@@ -50,10 +50,8 @@ function Header() {
               Broad
             </a>
           </li>
-          <li className="nav-item headernavLink ProductsHeader">
-            <a className="nav-link me-3" href="#">
-              List
-            </a>
+          <li className="nav-item me-3  ProductsHeader">
+          <button class="btn btn-primary" type="button">Create</button>
           </li>
           <li className="nav-item searchBarHeader">
             <input

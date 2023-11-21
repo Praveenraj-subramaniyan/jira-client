@@ -22,13 +22,13 @@ function LeftSideBar(data) {
                 <b>Projects</b>
                 </Link>
               </li>
-              <li className="nav-item small mt-2 ms-2">
+              <li className="nav-item small ms-2">
                 <Link className="nav-link text-secondary">Recent</Link>
               </li>
               <li
                 className={`${
                   buttonClick === "waitlist" ? "activeleftsideBarBtn" : ""
-                } nav-item small ms-2 mt-2 `}
+                } nav-item small  mt-2 `}
                 onClick={() => setbuttonClick("Questions")}
               >
                 <Link className="nav-link" to="/questions">
