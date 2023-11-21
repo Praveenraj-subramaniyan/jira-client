@@ -21,6 +21,11 @@ export const createIssueAction = (task) => async (dispatch) => {
   }
 };
 
+export const updateTaskStatus = (taskId, status) => ({
+  type: 'UPDATE_TASK_STATUS',
+  data: { taskId, status },
+});
+
 // export const deleteQuestion = (id,answerId) => async (dispatch) => {
 //   try {
 //     const reponse = await deleteQuestionAPI(id,answerId);

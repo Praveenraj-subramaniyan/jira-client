@@ -4,8 +4,18 @@ const issueReducer = (state = { data: null }, action) => {
       return { ...state };
     case "GetAllTask":
       return { ...state, data: action.data };
-    case "PostQuestion":
-      return { ...state };
+      case 'UPDATE_TASK_STATUS':
+     
+        console.log(action.data.status)
+        console.log(action.data.taskId)
+        return {
+          ...state,
+          data: state.data.map((task) =>
+            task._id === action.data.taskId
+              ? { ...task, status: action.data.status }
+              : task
+          ),
+        };
     default:
       return state;
   }

@@ -3,10 +3,11 @@ import React, { useState } from "react";
 import "./CSS/HomeMainBar.css";
 import AddCard from "../components/AddCard";
 import TaskCard from "./TaskCard";
-
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
+import { updateTaskStatus } from '../actions/IssueActions';
 
 function HomeMainBar() {
+  const dispatch = useDispatch();
   const taskList = useSelector((state) => state.issueReducer.data);
   if (!taskList) {
     return <div className="spinner-border  isLoading"></div>;
@@ -15,12 +16,12 @@ function HomeMainBar() {
   const handleDrop = (e, status) => {
     e.preventDefault();
     const taskId = e.dataTransfer.getData('text/plain');
-    console.log(`Task ${taskId} dropped to ${status}`);
   //   settaskList((prevTaskList) =>
   //   prevTaskList.map((task) =>
   //     task.id.toString() === taskId ? { ...task, status: status } : task
   //   )
   // );
+  dispatch(updateTaskStatus(taskId, status));
 
     // You can update the state or perform other actions here
 };
