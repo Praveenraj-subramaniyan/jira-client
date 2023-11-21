@@ -6,6 +6,7 @@ import Avatar from "./Avatar";
 import { useDispatch, useSelector } from "react-redux";
 import { currentUserActions } from "../actions/currentUserActions";
 
+
 function Header() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -51,7 +52,10 @@ function Header() {
             </a>
           </li>
           <li className="nav-item me-3  ProductsHeader">
-          <button class="btn btn-primary" type="button">Create</button>
+          <button class="btn btn-primary" 
+          data-bs-toggle="modal"
+          data-bs-target="#createTask"
+          type="button">Create</button>
           </li>
           <li className="nav-item searchBarHeader">
             <input

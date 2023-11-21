@@ -16,6 +16,21 @@
 .satus-menu{
   float: right;
 }
+.PROGRESS-title{
+  color: blue;
+  background-color: #E6FCFF;
+  border-radius: 5px;
+}
+.DO-title{
+  color:  #42526E;
+  background-color: #F7F8F9;
+  border-radius: 5px;
+}
+.DONE-title{
+  color: #216E4E;
+  background-color: #BAF3DB;
+  border-radius: 5px;
+}
 @media (max-width: 600px) {
   .HomeMainBarDiv {
     width: 110% !important;
