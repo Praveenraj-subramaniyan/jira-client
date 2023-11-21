@@ -1,4 +1,4 @@
-import {  createIssueAPI,GetTaskListAPI } from "../api";
+import {  createIssueAPI,GetTaskListAPI,updateTaskStatusAPI } from "../api";
 
 export const getAllCard = () => async (dispatch) => {
   try {
@@ -21,10 +21,15 @@ export const createIssueAction = (task) => async (dispatch) => {
   }
 };
 
-export const updateTaskStatus = (taskId, status) => ({
-  type: 'UPDATE_TASK_STATUS',
-  data: { taskId, status },
-});
+export const updateTaskStatus = (taskId, status) => async (dispatch) => {
+  dispatch({
+    type: 'UPDATE_TASK_STATUS',
+    data: { taskId, status }
+  });
+
+    const response = await updateTaskStatusAPI(taskId, status);
+
+};
 
 // export const deleteQuestion = (id,answerId) => async (dispatch) => {
 //   try {

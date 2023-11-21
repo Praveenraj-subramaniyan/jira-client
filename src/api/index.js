@@ -47,6 +47,18 @@ export const createIssueAPI = async (task) => {
   }
 };
 
+export const updateTaskStatusAPI = async (taskId, status) => {
+  try {
+    const response = await API.post("/issues/update/status", {taskId,status}, {
+      headers: {
+        Authorization: `Bearer ${authToken.token}`,
+      },
+    });
+    return response;
+  } catch (error) {
+    return "Server Busy";
+  }
+};
 
 
 export const deleteQuestionAPI = async (id) => {
