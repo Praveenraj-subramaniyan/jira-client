@@ -1,0 +1,8 @@
+.TaskCard{
+    background-color: white;
+    min-height: 150px;
+    border-radius: 5px;
+}
+.sumarry-p{
+    font-size: 14px;
+}

@@ -1,0 +1,49 @@
+.modal{
+    margin-top: 5%;
+    --bs-modal-width: 65% !important;
+}
+
+input{
+    width: 90%;
+    min-height: 40px;
+    border-radius: 5px;
+    padding-left: 10px;
+    outline: none;
+    border: 1px solid black;
+}
+
+
+input:focus{
+    border: 2px solid blue !important;
+}
+
+
+textarea{
+    width: 90%;
+    min-height: 80px;
+    border-radius: 5px;
+    padding-left: 10px;
+    outline: none;
+    border: 1px solid black;
+}
+
+textarea:focus{
+    border: 2px solid blue;
+}
+
+select{
+    width: 20%;
+    min-height: 40px;
+    padding-left: 15px;
+    border-radius: 5px;
+    border: 1px solid black;
+    outline: none;
+}
+
+select:focus{
+    border: 2px solid blue;
+}
+
+form{
+    overflow-y: scroll !important;
+}

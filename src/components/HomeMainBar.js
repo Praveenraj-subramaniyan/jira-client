@@ -12,17 +12,20 @@ function HomeMainBar() {
     {
       id:1,
       status:"TO DO",
-      sumarry:"ddsgdg dg dg dg d g dsg g sd gds g dg ds"
+      sumarry:"ddsgdg dg dg dg d g dsg g sd gds g dg ds",
+      date: new Date(),
     },
     {
       id:2,
       status:"IN PROGRESS",
-      sumarry:"ddsgdg dg dg dg d g dsg g sd gds g dg ds"
+      sumarry:"ddsgdg dg dg dg d g dsg g sd gds g dg ds",
+      date: new Date(),
     },
     {
       id:3,
       status:"DONE",
-      sumarry:"ddsgdg dg dg dg d g dsg g sd gds g dg ds"
+      sumarry:"ddsgdg dg dg dg d g dsg g sd gds g dg ds",
+      date: new Date(),
     },
   ])
   // const location = useLocation();
@@ -48,8 +51,8 @@ function HomeMainBar() {
   return (
     <div className="HomeMainBarDiv mt-5 pt-3 ms-2">
       <div className="row mt-5 ms-3">
-        {status.map((data) => (
-          <div className="col-3 ms-4 staus-div p-3"
+        {status.map((data,index) => (
+          <div key={index} className="col-3 ms-4 staus-div p-3"
           onDrop={(e) => handleDrop(e, data)}
           onDragOver={(e) => e.preventDefault()}
           >
@@ -72,7 +75,7 @@ function HomeMainBar() {
          {taskList
         .filter((task) => task.status === data)
         .map((filteredTask) => (
-          <TaskCard key={filteredTask.id} id={filteredTask.id} status={filteredTask.status} sumarry={filteredTask.sumarry} settaskList={settaskList}/>
+          <TaskCard key={filteredTask.id} date={filteredTask.date} id={filteredTask.id} status={filteredTask.status} sumarry={filteredTask.sumarry} settaskList={settaskList}/>
       ))}
         
           </div>
