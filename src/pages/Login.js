@@ -49,7 +49,7 @@ function Login() {
       });
     } else if (response?.status) {
       dispatch(currentUserActions());
-      navigate("/");
+      navigate("/dashboard");
       window.location.reload();
     }
     setIsLoading(false);

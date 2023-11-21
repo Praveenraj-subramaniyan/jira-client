@@ -4,7 +4,7 @@ const loginReducer = (state = null, action) => {
   switch (action.type) {
     case "Login":
       if (action?.data.status) {
-        state = [...action.data]
+        state = {...action.data}
         const expiryDate = new Date(Date.now() + 24 * 60 * 60 * 1000);
         Cookies.set("Profile", JSON.stringify(action?.data), {
           expires: expiryDate,

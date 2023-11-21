@@ -7,6 +7,7 @@ const authToken = cookieValue ? JSON.parse(cookieValue) : null;
 export const LoginAPI = async (loginData) => {
   try {
     const response = await API.post("login", loginData);
+    console.log(response.data)
     return response.data;
   } catch (error) {
     console.error(error);
@@ -24,9 +25,9 @@ export const SignUPAPI = async (loginData) => {
   }
 };
 
-export const AskQuestionAPI = async (questionData) => {
+export const createIssueAPI = async (task) => {
   try {
-    const response = await API.post("/questions/ask", questionData, {
+    const response = await API.post("/issues/create", task, {
       headers: {
         Authorization: `Bearer ${authToken.token}`,
       },

@@ -2,11 +2,15 @@ import React, { useState } from "react";
 import "./CSS/AddCard.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useDispatch } from "react-redux";
+import {createIssueAction} from "../actions/IssueActions"
 
 function AddCard() {
+  const dispatch = useDispatch();
   const [task, setTask] = useState({
     status: "TO DO",
     sumarry: "",
+    description:"",
     priority: "Low",
     date: new Date(),
   });
@@ -27,6 +31,11 @@ function AddCard() {
     }));
   };
 
+  async function handleSubmit(event) {
+    event.preventDefault();
+    dispatch(createIssueAction(task));
+  }
+
   return (
     <div>
       <div className="modal" id="createTask">
@@ -40,15 +49,15 @@ function AddCard() {
                 data-bs-dismiss="modal"
               ></button>
             </div>
-
+            <form onSubmit={handleSubmit}>
             <div className="modal-body">
-              <form>
+             
                 <input
                   placeholder="Summary"
                   required
                   onChange={handleInputChange}
-                  name="summary"
-                  value={task.summary}
+                  name="sumarry"
+                  value={task.sumarry}
                 ></input>
                 <br /> <br />
                 <textarea
@@ -91,7 +100,7 @@ function AddCard() {
                   <option value="High">High</option>
                   <option value="Critical">Critical</option>
                 </select>
-              </form>
+
             </div>
 
             <div className="modal-footer">
@@ -103,13 +112,14 @@ function AddCard() {
                 cancel
               </button>
               <button
-                type="button"
+                type="submit"
                 className="btn btn-primary"
                 data-bs-dismiss="modal"
               >
                 save
               </button>
             </div>
+            </form>
           </div>
         </div>
       </div>
