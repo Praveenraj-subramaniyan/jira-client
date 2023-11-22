@@ -16,17 +16,28 @@ const issueReducer = (state = { data: null }, action) => {
               : task
           ),
         };
-        case 'UPDATE_TASK_SUMMARY':
+      case 'UPDATE_TASK_SUMMARY':
       const { taskId, sumarry, description } = action.data;
       const updatedData = state.data.map((task) =>
         task._id === taskId
           ? { ...task, sumarry, description }
           : task
       );
-      console.log("red")
-      console.log(taskId,sumarry, description)
-        console.log(updatedData)
+      // console.log("red")
+      // console.log(taskId,sumarry, description)
+      //   console.log(updatedData)
       return { ...state, data: updatedData };
+      case 'UPDATE_TASK_PRIORITY':
+        const { taskId1, priority } = action.data;
+        const updatedData1 = state.data.map((task) =>
+          task._id === taskId1
+            ? { ...task, priority}
+            : task
+        );
+        console.log("red")
+        console.log(taskId1,priority)
+          console.log(updatedData1)
+        return { ...state, data: updatedData1 };
     default:
       return state;
   }

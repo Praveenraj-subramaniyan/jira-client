@@ -3,7 +3,7 @@ import "./CSS/EditTaskDetails.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
-import { updateTaskSummary } from '../actions/IssueActions';
+import { updateTaskSummary,updateTaskPriority } from '../actions/IssueActions';
 
 function EditTaskDetails(props) {
 
@@ -15,29 +15,18 @@ const taskInStore = useSelector((state) => {
   });
 
   useEffect(() => {
-    // Update local state when taskInStore changes
     setTask({
       sumarry: taskInStore.sumarry || "",
       description: taskInStore.description || "",
       date:taskInStore.date || "",
       priority: taskInStore.priority || "",
     });
-    setTaskTemp({
-      sumarry: taskInStore.sumarry || "",
-      description: taskInStore.description || "",
-    });
+  
   }, [taskInStore]);
 
 const [task, setTask] = useState({});
 
-const [taskTemp, setTaskTemp] = useState({
-    sumarry: props?.sumarry,
-    description:props?.description,
-})
-
-
 async function removeValues() {
-    // dispatch(createIssueAction(task));
     setTask(null)
   }
 const handleInputChange = (e) => {
@@ -50,15 +39,25 @@ const handleInputChange = (e) => {
 };
 
 const handleDateChange = (date) => {
-    setTaskTemp((prevTaskList) => ({
-      ...prevTaskList,
-      date: date,
-    }));
+    // setTask((prevTaskList) => ({
+    //   ...prevTaskList,
+    //   date: date,
+    // }));
+    // dispatch(updateTaskDate(props.id,task.date));
+  };
+
+  const handlePriorityChange = (e) => {
+    // setTask((prevTaskList) => ({
+    //   ...prevTaskList,
+    //   priority: priority,
+    // }));
+    const { name, value } = e.target;
+    let priority=value
+    dispatch(updateTaskPriority(props.id, priority));
   };
 
   async function handleSubmit(event) {
     event.preventDefault();
-    console.log(task)
     dispatch(updateTaskSummary(props.id,task.sumarry, task.description));
     removeValues();
    
@@ -66,14 +65,12 @@ const handleDateChange = (date) => {
 
   async function cancelSubmit(event) {
     event.preventDefault();
-    setTask(taskTemp)
+    setTask(taskInStore)
   }
 
   return (
     <div>
-      <div className="modal"  id="editTask"
-    //   id={props.id}
-      >
+      <div className="modal"  id="editTask">
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
@@ -147,9 +144,9 @@ const handleDateChange = (date) => {
                   id="customselectedit"
                   className="mx-2 customselectadd"
                   required
-                  onChange={handleInputChange}
+                  onChange={handlePriorityChange}
                   name="priority"
-                   value={task?.priority || (props && props.priority) || "Low"}
+                   value={task?.priority }
                 //value={task.priority || "Low"}
                 >
                   <option value="Low">Low</option>

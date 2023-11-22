@@ -87,6 +87,23 @@ export const updateTaskSumarryAPI = async (taskId, sumarry, description) => {
   }
 };
 
+
+export const updateTaskPriorityAPI = async (taskId, priority) => {
+  try {
+    const response = await API.patch("/issues/update/priority", {taskId,priority}, {
+      headers: {
+        Authorization: `Bearer ${authToken.token}`,
+      },
+    });
+    return response;
+  } catch (error) {
+    toast.error("Internal server error", {
+      position: toast.POSITION.TOP_CENTER,
+    });
+    return "Server Busy";
+  }
+};
+
 export const deleteQuestionAPI = async (id) => {
   try {
     const response = await API.delete("/questions/delete/" + id, {

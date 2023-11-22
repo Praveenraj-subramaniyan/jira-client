@@ -17,7 +17,6 @@ function HomeMainBar() {
 
   const handleClickTask = (task) => {
     setSelectedTask(task);
-    console.log("selectedTask",selectedTask)
   };
 
   const handleDrop = (e, status) => {
