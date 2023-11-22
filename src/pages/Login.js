@@ -11,8 +11,8 @@ function Login() {
   const dispatch = useDispatch();
 
   const [loginData, setloginData] = useState({
-    email: "",
-    password: "",
+    email: "spr887011@gmail.com",
+    password: "1234",
   });
   function HandleLoginData(event) {
     const target = event.target;

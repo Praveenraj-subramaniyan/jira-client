@@ -1,7 +1,7 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
-const API = axios.create({ baseURL: "http://localhost:3000/" });
+const API = axios.create({ baseURL: "https://jira-server.onrender.com/" });
 const cookieValue = Cookies.get("Profile");
 const authToken = cookieValue ? JSON.parse(cookieValue) : null;
 
