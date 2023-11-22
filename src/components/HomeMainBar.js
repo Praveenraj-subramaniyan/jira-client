@@ -3,27 +3,27 @@ import React, { useState } from "react";
 import "./CSS/HomeMainBar.css";
 import AddCard from "../components/AddCard";
 import TaskCard from "./TaskCard";
+import EditTaskDetails from "./EditTaskDetails";
 import { useSelector,useDispatch } from "react-redux";
 import { updateTaskStatus } from '../actions/IssueActions';
 
 function HomeMainBar() {
   const dispatch = useDispatch();
+  const [selectedTask, setSelectedTask] = useState(null);
   const taskList = useSelector((state) => state.issueReducer.data);
   if (!taskList) {
     return <div className="spinner-border  isLoading"></div>;
   }
 
+  const handleClickTask = (task) => {
+    setSelectedTask(task);
+    console.log("selectedTask",selectedTask)
+  };
+
   const handleDrop = (e, status) => {
     e.preventDefault();
     const taskId = e.dataTransfer.getData('text/plain');
-  //   settaskList((prevTaskList) =>
-  //   prevTaskList.map((task) =>
-  //     task.id.toString() === taskId ? { ...task, status: status } : task
-  //   )
-  // );
   dispatch(updateTaskStatus(taskId, status));
-
-    // You can update the state or perform other actions here
 };
   
   const status = ["TO DO", "IN PROGRESS", "DONE"];
@@ -54,16 +54,21 @@ function HomeMainBar() {
          {taskList
         .filter((task) => task.status === data)
         .map((filteredTask) => (
-          <TaskCard key={filteredTask._id} date={filteredTask.date} id={filteredTask._id} status={filteredTask.status} sumarry={filteredTask.sumarry} />
+          <TaskCard key={filteredTask._id} date={filteredTask.date} id={filteredTask._id} status={filteredTask.status} sumarry={filteredTask.sumarry} 
+          onClick={() => handleClickTask(filteredTask)}
+          />
       ))}
         
           </div>
         ))}
         <div className="col-1 ms-1">+</div>
       </div>
-      {/* <div className="mt-4">
-        
-      </div> */}
+      
+        <EditTaskDetails
+        key={selectedTask?.id} date={selectedTask?.date} description={selectedTask?.description} id={selectedTask?._id} status={selectedTask?.status} sumarry={selectedTask?.sumarry} priority={selectedTask?.priority} 
+          
+        />
+      
       <AddCard/>
     </div>
   );

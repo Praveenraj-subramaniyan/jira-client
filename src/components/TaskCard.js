@@ -16,6 +16,9 @@ function TaskCard(props) {
       draggable="true"
       onDragStart={handleDragStart}
       onDragOver={handleDragOver}
+      onClick={props.onClick} 
+      data-bs-toggle="modal"
+      data-bs-target="#editTask"
     >
       <p className="pt-3 pb-0 px-2 sumarry-p">{props.sumarry}</p>
       <div className="d-flex justify-content-between">

@@ -16,6 +16,17 @@ const issueReducer = (state = { data: null }, action) => {
               : task
           ),
         };
+        case 'UPDATE_TASK_SUMMARY':
+      const { taskId, sumarry, description } = action.data;
+      const updatedData = state.data.map((task) =>
+        task._id === taskId
+          ? { ...task, sumarry, description }
+          : task
+      );
+      console.log("red")
+      console.log(taskId,sumarry, description)
+        console.log(updatedData)
+      return { ...state, data: updatedData };
     default:
       return state;
   }

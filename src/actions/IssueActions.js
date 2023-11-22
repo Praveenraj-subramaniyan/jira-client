@@ -1,4 +1,4 @@
-import {  createIssueAPI,GetTaskListAPI,updateTaskStatusAPI } from "../api";
+import {  createIssueAPI,GetTaskListAPI,updateTaskStatusAPI ,updateTaskSumarryAPI} from "../api";
 
 export const getAllCard = () => async (dispatch) => {
   try {
@@ -13,8 +13,8 @@ export const createIssueAction = (task) => async (dispatch) => {
   try {
     const reponse = await createIssueAPI(task);
     console.log("Add task")
-    dispatch({ type: "CreateIssue", data: reponse });
-    //dispatch(getAllCard());
+    dispatch({ type: "CreateIssue", data: task });
+    dispatch(getAllCard());
     return reponse;
   } catch (error) {
     console.log(error);
@@ -28,6 +28,16 @@ export const updateTaskStatus = (taskId, status) => async (dispatch) => {
   });
 
     const response = await updateTaskStatusAPI(taskId, status);
+
+};
+
+export const updateTaskSummary = (taskId, sumarry, description) => async (dispatch) => {
+  dispatch({
+    type: 'UPDATE_TASK_SUMMARY',
+    data: { taskId,  sumarry, description }
+  });
+
+    const response = await updateTaskSumarryAPI(taskId, sumarry, description);
 
 };
 
