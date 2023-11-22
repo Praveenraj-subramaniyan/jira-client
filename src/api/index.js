@@ -1,8 +1,10 @@
 import axios from "axios";
 import Cookies from "js-cookie";
+import { toast } from "react-toastify";
 const API = axios.create({ baseURL: "http://localhost:3000/" });
 const cookieValue = Cookies.get("Profile");
 const authToken = cookieValue ? JSON.parse(cookieValue) : null;
+
 
 export const LoginAPI = async (loginData) => {
   try {
@@ -30,6 +32,9 @@ export const GetTaskListAPI = async () => {
     const response = await API.get("/issues");
     return response.data;
   } catch (error) {
+    toast.error("Internal server error", {
+      position: toast.POSITION.TOP_CENTER,
+    });
     return "Server Busy";
   }
 };
@@ -43,19 +48,25 @@ export const createIssueAPI = async (task) => {
     });
     return response;
   } catch (error) {
+    toast.error("Internal server error", {
+      position: toast.POSITION.TOP_CENTER,
+    });
     return "Server Busy";
   }
 };
 
 export const updateTaskStatusAPI = async (taskId, status) => {
   try {
-    const response = await API.post("/issues/update/status", {taskId,status}, {
+    const response = await API.patch("/issues/update/status", {taskId,status}, {
       headers: {
         Authorization: `Bearer ${authToken.token}`,
       },
     });
     return response;
   } catch (error) {
+    toast.error("Internal server error", {
+      position: toast.POSITION.TOP_CENTER,
+    });
     return "Server Busy";
   }
 };
@@ -70,6 +81,9 @@ export const deleteQuestionAPI = async (id) => {
     });
     return response;
   } catch (error) {
+    toast.error("Internal server error", {
+      position: toast.POSITION.TOP_CENTER,
+    });
     return "Server Busy";
   }
 };
