@@ -1,4 +1,4 @@
-import {  createIssueAPI,GetTaskListAPI,updateTaskStatusAPI ,updateTaskSumarryAPI, updateTaskPriorityAPI} from "../api";
+import {  createIssueAPI,GetTaskListAPI,updateTaskStatusAPI ,updateTaskSumarryAPI, updateTaskPriorityAPI,deleteTaskAPI} from "../api";
 
 export const getAllCard = () => async (dispatch) => {
   try {
@@ -50,15 +50,19 @@ export const updateTaskPriority = (taskId1, priority) => async (dispatch) => {
 
 };
 
-// export const deleteQuestion = (id,answerId) => async (dispatch) => {
-//   try {
-//     const reponse = await deleteQuestionAPI(id,answerId);
-//     dispatch(getAllCard());
-//     return reponse;
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
+export const deleteTaskAction = (taskId2) => async (dispatch) => {
+  try {
+    console.log(taskId2)
+    dispatch({
+      type: 'DELETE_TASK',
+      data: { taskId2}
+    });
+    const reponse = await deleteTaskAPI(taskId2);
+    return reponse;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 
 

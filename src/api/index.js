@@ -104,9 +104,9 @@ export const updateTaskPriorityAPI = async (taskId, priority) => {
   }
 };
 
-export const deleteQuestionAPI = async (id) => {
+export const deleteTaskAPI = async (id) => {
   try {
-    const response = await API.delete("/questions/delete/" + id, {
+    const response = await API.delete("/issues/delete/" + id, {
       headers: {
         Authorization: `Bearer ${authToken.token}`,
       },

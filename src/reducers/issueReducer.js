@@ -23,9 +23,6 @@ const issueReducer = (state = { data: null }, action) => {
           ? { ...task, sumarry, description }
           : task
       );
-      // console.log("red")
-      // console.log(taskId,sumarry, description)
-      //   console.log(updatedData)
       return { ...state, data: updatedData };
       case 'UPDATE_TASK_PRIORITY':
         const { taskId1, priority } = action.data;
@@ -38,6 +35,12 @@ const issueReducer = (state = { data: null }, action) => {
         console.log(taskId1,priority)
           console.log(updatedData1)
         return { ...state, data: updatedData1 };
+        case 'DELETE_TASK':
+          const { taskId2 } = action.data;
+          const updatedData2 = state.data.filter((task) => task._id !== taskId2);
+          console.log("red")
+          console.log(taskId2)
+          return { ...state, data: updatedData2 };
     default:
       return state;
   }

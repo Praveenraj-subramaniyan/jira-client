@@ -3,7 +3,7 @@ import "./CSS/EditTaskDetails.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
-import { updateTaskSummary,updateTaskPriority } from '../actions/IssueActions';
+import { updateTaskSummary,updateTaskPriority, deleteTaskAction } from '../actions/IssueActions';
 
 function EditTaskDetails(props) {
 
@@ -26,9 +26,7 @@ const taskInStore = useSelector((state) => {
 
 const [task, setTask] = useState({});
 
-async function removeValues() {
-    setTask(null)
-  }
+
 const handleInputChange = (e) => {
   const { name, value } = e.target;
   setTask((prevTaskList) => ({
@@ -47,10 +45,6 @@ const handleDateChange = (date) => {
   };
 
   const handlePriorityChange = (e) => {
-    // setTask((prevTaskList) => ({
-    //   ...prevTaskList,
-    //   priority: priority,
-    // }));
     const { name, value } = e.target;
     let priority=value
     dispatch(updateTaskPriority(props.id, priority));
@@ -59,9 +53,12 @@ const handleDateChange = (date) => {
   async function handleSubmit(event) {
     event.preventDefault();
     dispatch(updateTaskSummary(props.id,task.sumarry, task.description));
-    removeValues();
-   
   }
+
+  async function deleteTask() {
+    dispatch(deleteTaskAction(props.id));
+  }
+
 
   async function cancelSubmit(event) {
     event.preventDefault();
@@ -162,7 +159,6 @@ const handleDateChange = (date) => {
                 type="button"
                 className="btn btn-light"
                 data-bs-dismiss="modal"
-                onClick={removeValues}
               >
                 cancel
               </button>
@@ -170,7 +166,7 @@ const handleDateChange = (date) => {
                 type="submit"
                 className="btn btn-primary"
                 data-bs-dismiss="modal"
-                onClick={removeValues}
+                 onClick={() =>deleteTask()}
               >
                 Delete
               </button>
