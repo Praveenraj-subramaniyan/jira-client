@@ -1,4 +1,4 @@
-import {  createIssueAPI,GetTaskListAPI,updateTaskStatusAPI ,updateTaskSumarryAPI, updateTaskPriorityAPI,deleteTaskAPI} from "../api";
+import {  createIssueAPI,GetTaskListAPI,updateTaskStatusAPI ,updateTaskSumarryAPI, updateTaskPriorityAPI,deleteTaskAPI, updateTaskDateAPI} from "../api";
 
 export const getAllCard = () => async (dispatch) => {
   try {
@@ -47,6 +47,16 @@ export const updateTaskPriority = (taskId1, priority) => async (dispatch) => {
   });
 
    const response = await updateTaskPriorityAPI(taskId1, priority);
+
+};
+
+export const updateTaskDate = (taskId3, date) => async (dispatch) => {
+  dispatch({
+    type: 'UPDATE_TASK_DATE',
+    data: { taskId3,  date }
+  });
+
+   const response = await updateTaskDateAPI(taskId3, date);
 
 };
 

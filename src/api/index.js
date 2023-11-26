@@ -1,7 +1,7 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
-const API = axios.create({ baseURL: "https://jira-server.onrender.com/" });
+const API = axios.create({ baseURL: "http://localhost:3000/" });
 const cookieValue = Cookies.get("Profile");
 const authToken = cookieValue ? JSON.parse(cookieValue) : null;
 
@@ -91,6 +91,22 @@ export const updateTaskSumarryAPI = async (taskId, sumarry, description) => {
 export const updateTaskPriorityAPI = async (taskId, priority) => {
   try {
     const response = await API.patch("/issues/update/priority", {taskId,priority}, {
+      headers: {
+        Authorization: `Bearer ${authToken.token}`,
+      },
+    });
+    return response;
+  } catch (error) {
+    toast.error("Internal server error", {
+      position: toast.POSITION.TOP_CENTER,
+    });
+    return "Server Busy";
+  }
+};
+
+export const updateTaskDateAPI = async (taskId, date) => {
+  try {
+    const response = await API.patch("/issues/update/date", {taskId,date}, {
       headers: {
         Authorization: `Bearer ${authToken.token}`,
       },

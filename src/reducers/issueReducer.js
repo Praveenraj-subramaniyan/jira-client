@@ -31,15 +31,21 @@ const issueReducer = (state = { data: null }, action) => {
             ? { ...task, priority}
             : task
         );
-        console.log("red")
-        console.log(taskId1,priority)
-          console.log(updatedData1)
         return { ...state, data: updatedData1 };
+        case 'UPDATE_TASK_DATE':
+          const { taskId3, date } = action.data;
+          const updatedData3 = state.data.map((task) =>
+            task._id === taskId3
+              ? { ...task, date}
+              : task
+          );
+          console.log("red")
+          console.log(taskId3,date)
+            console.log(updatedData3)
+          return { ...state, data: updatedData3 };
         case 'DELETE_TASK':
           const { taskId2 } = action.data;
           const updatedData2 = state.data.filter((task) => task._id !== taskId2);
-          console.log("red")
-          console.log(taskId2)
           return { ...state, data: updatedData2 };
     default:
       return state;

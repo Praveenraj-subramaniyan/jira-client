@@ -3,29 +3,28 @@ import "./CSS/EditTaskDetails.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
-import { updateTaskSummary,updateTaskPriority, deleteTaskAction } from '../actions/IssueActions';
+import { updateTaskSummary,updateTaskPriority, deleteTaskAction, updateTaskDate } from '../actions/IssueActions';
 
 function EditTaskDetails(props) {
 
 const dispatch = useDispatch();
 
+const [task, setTask] = useState({});
 const taskInStore = useSelector((state) => {
     const task = state.issueReducer.data.find((task) => task._id === props.id);
-    return task || {}; // Return an empty object if task is not found
+    return task || {};
   });
 
-  useEffect(() => {
-    setTask({
+
+  useEffect(() => { 
+    setTask((prevTask) => ({
+      ...prevTask,
       sumarry: taskInStore.sumarry || "",
       description: taskInStore.description || "",
-      date:taskInStore.date || "",
+      date: taskInStore.date || "",
       priority: taskInStore.priority || "",
-    });
-  
+    }));
   }, [taskInStore]);
-
-const [task, setTask] = useState({});
-
 
 const handleInputChange = (e) => {
   const { name, value } = e.target;
@@ -33,7 +32,6 @@ const handleInputChange = (e) => {
     ...prevTaskList,
     [name]: value,
   }));
-  console.log(task)
 };
 
 const handleDateChange = (date) => {
@@ -41,7 +39,8 @@ const handleDateChange = (date) => {
     //   ...prevTaskList,
     //   date: date,
     // }));
-    // dispatch(updateTaskDate(props.id,task.date));
+    console.log('edit',date.toISOString().split('T')[0])
+    dispatch(updateTaskDate(props.id,date.toISOString().split('T')[0]));
   };
 
   const handlePriorityChange = (e) => {
@@ -90,7 +89,6 @@ const handleDateChange = (date) => {
                   onChange={handleInputChange}
                   name="sumarry"
                  value={task?.sumarry }
-                //value={props.sumarry}
                 ></input>
                 <br /> <br />
                 <textarea
@@ -99,7 +97,6 @@ const handleDateChange = (date) => {
                   onChange={handleInputChange}
                   name="description"
                  value={task?.description}
-                //value={props.description}
                 ></textarea>
                   <br /> 
                   <button
@@ -124,7 +121,7 @@ const handleDateChange = (date) => {
                 <DatePicker
                   className="ms-2"
                   id="dueDateedit"
-                  selected={props.date ? new Date(props.date) : new Date()}
+                  selected={task.date ? new Date(task.date) : new Date()}
                   name="date"
                   onChange={handleDateChange}
                   style={{ width: "400px" }}
@@ -144,7 +141,6 @@ const handleDateChange = (date) => {
                   onChange={handlePriorityChange}
                   name="priority"
                    value={task?.priority }
-                //value={task.priority || "Low"}
                 >
                   <option value="Low">Low</option>
                   <option value="Medium">Medium</option>
